@@ -1,70 +1,41 @@
-# Getting Started with Create React App
+curl -X POST  https://or-dev-prod.k3l.io -H "Content-Type: application/json" -d '{
+  "jsonrpc": "2.0",
+  "method": "sequencer_get_results",
+  "params": [{
+    "request_tx_hash": "35b8f06856b66b27b746c33fb8d779e23bc62715baf23d88c5ac31527d43d4d5",
+    "start": 0,
+    "size": 10
+  }],
+  "id": 1
+}'
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+curl -X POST https://or-dev-prod.k3l.io -H "Content-Type: application/json" -d '{
+  "jsonrpc": "2.0",
+  "method": "sequencer_get_tx",
+  "params": ["compute_request", "35b8f06856b66b27b746c33fb8d779e23bc62715baf23d88c5ac31527d43d4d5"],
+  "id": 1
+}'
 
-## Available Scripts
+curl -X POST https://or-dev-prod.k3l.io -H "Content-Type: application/json" -d '{
+  "jsonrpc": "2.0",
+  "method": "sequencer_get_tx",
+  "params": ["compute_verification", "c409330d99f81bd643f50165615deb4944f72b07e84dda2c7615359b099326a9"],
+  "id": 1
+}'
 
-In the project directory, you can run:
+curl -X POST https://or-dev-prod.k3l.io -H "Content-Type: application/json" -d '{
+  "jsonrpc": "2.0",
+  "method": "sequencer_get_tx",
+  "params": ["compute_assignment", "0f34d504d587af8ed7141e59f1141ca09b5c1b146b3a1a96f25986b7239154c0"],
+  "id": 1
+}'
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+assignment tx?
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+curl -X POST https://or-dev-prod.k3l.io  -H "Content-Type: application/json" -d '{
+  "jsonrpc": "2.0",
+  "method": "sequencer_get_compute_result",
+  "params": [0],
+  "id": 1
+}'
