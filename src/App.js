@@ -1,38 +1,13 @@
-import { useState, useEffect } from "react";
-import { GraphQLClient, gql } from 'graphql-request';
-
-import { getTransactions } from './api'
+import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import TransactionList from "./TransactionList";
-import TransactionDetail from './TransactionDetail';
-import JobList from './jobList'
-import { Link } from 'react-router-dom';
+import TransactionListPage from "./pages/TransactionListPage";
+import TransactionDetailPage from './pages/TransactionDetail';
+import JobListPage from './pages/jobList'
 import { NavLink } from 'react-router-dom'
 
 export default function Home() {
-  const [events, setEvents] = useState([]);
   const [selectedEventIndex, setSelectedEventIndex] = useState(null);
   const [searchHash, setSearchHash] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-
-  const fetchEvents = async (hash = '') => {
-    setIsLoading(true);
-    try {
-      const data = await getTransactions(hash);
-      setEvents(data.events);
-    } catch (error) {
-      console.error('Error fetching events:', error);
-    }
-    setIsLoading(false);
-  };
-
-  useEffect(() => {
-    fetchEvents(searchHash);
-  }, [searchHash]);
-
-  const toggleEventDetails = (index) => {
-    setSelectedEventIndex(index === selectedEventIndex ? null : index);
-  };
 
   const handleSearchChange = (event) => {
     setSearchHash(event.target.value);
@@ -42,9 +17,6 @@ export default function Home() {
     <Router>
       <div className="min-h-screen w-full overflow-x-hidden">
         <nav className="w-full opacity-100 border-gray-200 md:max-w-[1200px] mx-auto">
-
-
-
           <div className="flex justify-between items-center py-6 px-[16px] md:py-10 md:px-[100px]">
             <div className="w-[8rem]">
               {<img src={'./openrank_logo.svg'} alt="OpenRank Logo" />}
@@ -112,10 +84,10 @@ export default function Home() {
 
 
             <Routes>
-              <Route path="/" element={<TransactionList />} />
-              <Route path="/jobs" element={<JobList />} />
-              <Route path="/transactions" element={<TransactionList />} />
-              <Route path="/transactions/:hash" element={<TransactionDetail />} />
+              <Route path="/" element={<TransactionListPage />} />
+              <Route path="/jobs" element={<JobListPage />} />
+              <Route path="/transactions" element={<TransactionListPage />} />
+              <Route path="/transactions/:hash" element={<TransactionDetailPage />} />
             </Routes>
 
 

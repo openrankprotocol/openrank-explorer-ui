@@ -1,10 +1,11 @@
 // TransactionDetail.js
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getTransactions } from './api'; 
+import { getTransactions } from '../api/protocol'
+import Loader from '../ui/loader'
 
 export default function TransactionDetail() {
-  const { hash } = useParams(); 
+  const { hash } = useParams();
   const [transaction, setTransaction] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -29,7 +30,7 @@ export default function TransactionDetail() {
   }, [hash]);
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Loader />;
   }
 
   if (!transaction) {
@@ -43,8 +44,8 @@ export default function TransactionDetail() {
     <div className="px-6 py-6 flex flex-col w-full mx-auto bg-white mt-4 mb-4" style={{ border: '1px lightgrey solid' }}>
       <p><strong>Hash:</strong> {transaction.hash}</p>
       <p><strong>Type:</strong> {transaction.type}</p>
-      <p><strong>From:</strong> {transaction.body.from}</p>
-      <p><strong>To:</strong> {transaction.body.to}</p>
+      <p><strong>From:</strong> {transaction.from}</p>
+      <p><strong>To:</strong> {transaction.to}</p>
       {transaction.body && (
         <pre><strong>Decoded:</strong> {JSON.stringify(transaction.body, null, '\t')}</pre>
       )}

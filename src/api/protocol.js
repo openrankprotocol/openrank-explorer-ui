@@ -12,6 +12,9 @@ export const getTransactions = async (hash) => {
       id
       type
       hash
+      to,
+      from,
+      jobSeqNumber
     }
   }
 `;
@@ -23,6 +26,31 @@ export const getTransactions = async (hash) => {
     } catch (error) {
         console.error('Error fetching events:', error);
     }
+
+}
+
+export const getTransactionsByJobSeqNumber = async (jobSeqNumber) => {
+  console.log('getTransactionsByJobSeqNumber')
+  const query = gql`
+query($jobSeqNumber: String) {
+  transactions(jobSeqNumber: $jobSeqNumber, limit: 500) {
+    body
+    id
+    type
+    hash
+    to,
+    from,
+    jobSeqNumber
+  }
+}
+`;
+  try {
+      const variables = { jobSeqNumber: jobSeqNumber ? jobSeqNumber : null };
+      const data = await client.request(query, variables);
+      return data;
+  } catch (error) {
+      console.error('Error fetching events:', error);
+  }
 
 }
 
