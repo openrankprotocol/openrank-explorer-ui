@@ -30,7 +30,6 @@ export const getTransactions = async (hash) => {
 }
 
 export const getTransactionsByJobSeqNumber = async (jobSeqNumber) => {
-  console.log('getTransactionsByJobSeqNumber')
   const query = gql`
 query($jobSeqNumber: String) {
   transactions(jobSeqNumber: $jobSeqNumber, limit: 500) {
